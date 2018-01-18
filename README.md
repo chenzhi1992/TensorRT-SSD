@@ -10,5 +10,8 @@ Use TensorRT API to implement Caffe-SSD， SSD（channel pruning）， Mobilenet
 
 #Requirements:
 
-1. TensorRT
+1. TensorRT3.0
 2. Cuda8.0 or Cuda9.0
+
+
+The code will be published shortly...
