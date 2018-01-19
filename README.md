@@ -1,7 +1,7 @@
 # TensorRT-SSD
 Use TensorRT API to implement Caffe-SSD， SSD（channel pruning）， Mobilenet-SSD
 
-===============================================
+==============================================
 I hope my code will help you learn and understand the TensorRT API better. It’s welcome to discuss the deep learning algorithm, model optimization， TensorRT API and so on， and learn from each other.
 ==============================================================================
 
