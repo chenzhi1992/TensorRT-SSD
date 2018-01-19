@@ -1,0 +1,858 @@
+name: "VGG_VOC0712_SSD_300x300_deploy"
+input: "data"
+input_shape {
+  dim: 1
+  dim: 3
+  dim: 300
+  dim: 300
+}
+layer {
+  name: "conv1_1"
+  type: "Convolution"
+  bottom: "data"
+  top: "conv1_1"
+  convolution_param {
+    num_output: 64
+    pad: 1
+    kernel_size: 3
+  }
+}
+layer {
+  name: "relu1_1"
+  type: "ReLU"
+  bottom: "conv1_1"
+  top: "conv1_1"
+}
+layer {
+  name: "conv1_2"
+  type: "Convolution"
+  bottom: "conv1_1"
+  top: "conv1_2"
+  convolution_param {
+    num_output: 64
+    pad: 1
+    kernel_size: 3
+  }
+}
+layer {
+  name: "relu1_2"
+  type: "ReLU"
+  bottom: "conv1_2"
+  top: "conv1_2"
+}
+layer {
+  name: "pool1"
+  type: "Pooling"
+  bottom: "conv1_2"
+  top: "pool1"
+  pooling_param {
+    pool: MAX
+    kernel_size: 2
+    stride: 2
+  }
+}
+layer {
+  name: "conv2_1"
+  type: "Convolution"
+  bottom: "pool1"
+  top: "conv2_1"
+  convolution_param {
+    num_output: 128
+    pad: 1
+    kernel_size: 3
+  }
+}
+layer {
+  name: "relu2_1"
+  type: "ReLU"
+  bottom: "conv2_1"
+  top: "conv2_1"
+}
+layer {
+  name: "conv2_2"
+  type: "Convolution"
+  bottom: "conv2_1"
+  top: "conv2_2"
+  convolution_param {
+    num_output: 128
+    pad: 1
+    kernel_size: 3
+  }
+}
+layer {
+  name: "relu2_2"
+  type: "ReLU"
+  bottom: "conv2_2"
+  top: "conv2_2"
+}
+layer {
+  name: "pool2"
+  type: "Pooling"
+  bottom: "conv2_2"
+  top: "pool2"
+  pooling_param {
+    pool: MAX
+    kernel_size: 2
+    stride: 2
+  }
+}
+layer {
+  name: "conv3_1"
+  type: "Convolution"
+  bottom: "pool2"
+  top: "conv3_1"
+  convolution_param {
+    num_output: 256
+    pad: 1
+    kernel_size: 3
+  }
+}
+layer {
+  name: "relu3_1"
+  type: "ReLU"
+  bottom: "conv3_1"
+  top: "conv3_1"
+}
+layer {
+  name: "conv3_2"
+  type: "Convolution"
+  bottom: "conv3_1"
+  top: "conv3_2"
+  convolution_param {
+    num_output: 256
+    pad: 1
+    kernel_size: 3
+  }
+}
+layer {
+  name: "relu3_2"
+  type: "ReLU"
+  bottom: "conv3_2"
+  top: "conv3_2"
+}
+layer {
+  name: "conv3_3"
+  type: "Convolution"
+  bottom: "conv3_2"
+  top: "conv3_3"
+  convolution_param {
+    num_output: 256
+    pad: 1
+    kernel_size: 3
+  }
+}
+layer {
+  name: "relu3_3"
+  type: "ReLU"
+  bottom: "conv3_3"
+  top: "conv3_3"
+}
+layer {
+  name: "pool3"
+  type: "Pooling"
+  bottom: "conv3_3"
+  top: "pool3"
+  pooling_param {
+    pool: MAX
+    kernel_size: 2
+    stride: 2
+  }
+}
+layer {
+  name: "conv4_1"
+  type: "Convolution"
+  bottom: "pool3"
+  top: "conv4_1"
+  convolution_param {
+    num_output: 512
+    pad: 1
+    kernel_size: 3
+  }
+}
+layer {
+  name: "relu4_1"
+  type: "ReLU"
+  bottom: "conv4_1"
+  top: "conv4_1"
+}
+layer {
+  name: "conv4_2"
+  type: "Convolution"
+  bottom: "conv4_1"
+  top: "conv4_2"
+  convolution_param {
+    num_output: 512
+    pad: 1
+    kernel_size: 3
+  }
+}
+layer {
+  name: "relu4_2"
+  type: "ReLU"
+  bottom: "conv4_2"
+  top: "conv4_2"
+}
+layer {
+  name: "conv4_3"
+  type: "Convolution"
+  bottom: "conv4_2"
+  top: "conv4_3"
+  convolution_param {
+    num_output: 512
+    pad: 1
+    kernel_size: 3
+  }
+}
+layer {
+  name: "relu4_3"
+  type: "ReLU"
+  bottom: "conv4_3"
+  top: "conv4_3"
+}
+layer {
+  name: "pool4"
+  type: "Pooling"
+  bottom: "conv4_3"
+  top: "pool4"
+  pooling_param {
+    pool: MAX
+    kernel_size: 2
+    stride: 2
+  }
+}
+layer {
+  name: "conv5_1"
+  type: "Convolution"
+  bottom: "pool4"
+  top: "conv5_1"
+  convolution_param {
+    num_output: 512
+    pad: 1
+    kernel_size: 3
+  }
+}
+layer {
+  name: "relu5_1"
+  type: "ReLU"
+  bottom: "conv5_1"
+  top: "conv5_1"
+}
+layer {
+  name: "conv5_2"
+  type: "Convolution"
+  bottom: "conv5_1"
+  top: "conv5_2"
+  convolution_param {
+    num_output: 512
+    pad: 1
+    kernel_size: 3
+  }
+}
+layer {
+  name: "relu5_2"
+  type: "ReLU"
+  bottom: "conv5_2"
+  top: "conv5_2"
+}
+layer {
+  name: "conv5_3"
+  type: "Convolution"
+  bottom: "conv5_2"
+  top: "conv5_3"
+  convolution_param {
+    num_output: 512
+    pad: 1
+    kernel_size: 3
+  }
+}
+layer {
+  name: "relu5_3"
+  type: "ReLU"
+  bottom: "conv5_3"
+  top: "conv5_3"
+}
+layer {
+  name: "pool5"
+  type: "Pooling"
+  bottom: "conv5_3"
+  top: "pool5"
+  pooling_param {
+    pool: MAX
+    kernel_size: 3
+    stride: 1
+    pad: 1
+  }
+}
+layer {
+  name: "fc6"
+  type: "Convolution"
+  bottom: "pool5"
+  top: "fc6"
+  convolution_param {
+    num_output: 1024
+    pad: 6
+    kernel_size: 3
+  }
+}
+layer {
+  name: "relu6"
+  type: "ReLU"
+  bottom: "fc6"
+  top: "fc6"
+}
+layer {
+  name: "fc7"
+  type: "Convolution"
+  bottom: "fc6"
+  top: "fc7"
+  convolution_param {
+    num_output: 1024
+    kernel_size: 1
+  }
+}
+layer {
+  name: "relu7"
+  type: "ReLU"
+  bottom: "fc7"
+  top: "fc7"
+}
+layer {
+  name: "conv6_1"
+  type: "Convolution"
+  bottom: "fc7"
+  top: "conv6_1"
+  convolution_param {
+    num_output: 256
+    pad: 0
+    kernel_size: 1
+    stride: 1
+  }
+}
+layer {
+  name: "conv6_1_relu"
+  type: "ReLU"
+  bottom: "conv6_1"
+  top: "conv6_1"
+}
+layer {
+  name: "conv6_2"
+  type: "Convolution"
+  bottom: "conv6_1"
+  top: "conv6_2"
+  convolution_param {
+    num_output: 512
+    pad: 1
+    kernel_size: 3
+    stride: 2
+  }
+}
+layer {
+  name: "conv6_2_relu"
+  type: "ReLU"
+  bottom: "conv6_2"
+  top: "conv6_2"
+}
+layer {
+  name: "conv7_1"
+  type: "Convolution"
+  bottom: "conv6_2"
+  top: "conv7_1"
+  convolution_param {
+    num_output: 128
+    pad: 0
+    kernel_size: 1
+    stride: 1
+  }
+}
+layer {
+  name: "conv7_1_relu"
+  type: "ReLU"
+  bottom: "conv7_1"
+  top: "conv7_1"
+}
+layer {
+  name: "conv7_2"
+  type: "Convolution"
+  bottom: "conv7_1"
+  top: "conv7_2"
+  convolution_param {
+    num_output: 256
+    pad: 1
+    kernel_size: 3
+    stride: 2
+  }
+}
+layer {
+  name: "conv7_2_relu"
+  type: "ReLU"
+  bottom: "conv7_2"
+  top: "conv7_2"
+}
+layer {
+  name: "conv8_1"
+  type: "Convolution"
+  bottom: "conv7_2"
+  top: "conv8_1"
+  convolution_param {
+    num_output: 128
+    pad: 0
+    kernel_size: 1
+    stride: 1
+  }
+}
+layer {
+  name: "conv8_1_relu"
+  type: "ReLU"
+  bottom: "conv8_1"
+  top: "conv8_1"
+}
+layer {
+  name: "conv8_2"
+  type: "Convolution"
+  bottom: "conv8_1"
+  top: "conv8_2"
+  convolution_param {
+    num_output: 256
+    pad: 0
+    kernel_size: 3
+    stride: 1
+  }
+}
+layer {
+  name: "conv8_2_relu"
+  type: "ReLU"
+  bottom: "conv8_2"
+  top: "conv8_2"
+}
+layer {
+  name: "conv9_1"
+  type: "Convolution"
+  bottom: "conv8_2"
+  top: "conv9_1"
+  convolution_param {
+    num_output: 128
+    pad: 0
+    kernel_size: 1
+    stride: 1
+  }
+}
+layer {
+  name: "conv9_1_relu"
+  type: "ReLU"
+  bottom: "conv9_1"
+  top: "conv9_1"
+}
+layer {
+  name: "conv9_2"
+  type: "Convolution"
+  bottom: "conv9_1"
+  top: "conv9_2"
+  convolution_param {
+    num_output: 256
+    pad: 0
+    kernel_size: 3
+    stride: 1
+  }
+}
+layer {
+  name: "conv9_2_relu"
+  type: "ReLU"
+  bottom: "conv9_2"
+  top: "conv9_2"
+}
+layer {
+  name: "conv4_3_norm"
+  type: "IPlugin"
+  bottom: "conv4_3"
+  top: "conv4_3_norm"
+  }
+}
+layer {
+  name: "conv4_3_norm_mbox_loc"
+  type: "Convolution"
+  bottom: "conv4_3_norm"
+  top: "conv4_3_norm_mbox_loc"
+  convolution_param {
+    num_output: 16
+    pad: 1
+    kernel_size: 3
+    stride: 1
+  }
+}
+layer {
+  name: "conv4_3_norm_mbox_loc_perm"
+  type: "IPlugin"
+  bottom: "conv4_3_norm_mbox_loc"
+  top: "conv4_3_norm_mbox_loc_perm"
+}
+layer {
+  name: "conv4_3_norm_mbox_loc_flat"
+  type: "IPlugin"
+  bottom: "conv4_3_norm_mbox_loc_perm"
+  top: "conv4_3_norm_mbox_loc_flat"
+}
+layer {
+  name: "conv4_3_norm_mbox_conf"
+  type: "Convolution"
+  bottom: "conv4_3_norm"
+  top: "conv4_3_norm_mbox_conf"
+  convolution_param {
+    num_output: 84
+    pad: 1
+    kernel_size: 3
+    stride: 1
+  }
+}
+layer {
+  name: "conv4_3_norm_mbox_conf_perm"
+  type: "IPlugin"
+  bottom: "conv4_3_norm_mbox_conf"
+  top: "conv4_3_norm_mbox_conf_perm"
+}
+layer {
+  name: "conv4_3_norm_mbox_conf_flat"
+  type: "IPlugin"
+  bottom: "conv4_3_norm_mbox_conf_perm"
+  top: "conv4_3_norm_mbox_conf_flat"
+}
+layer {
+  name: "conv4_3_norm_mbox_priorbox"
+  type: "IPlugin"
+  bottom: "conv4_3_norm"
+  bottom: "data"
+  top: "conv4_3_norm_mbox_priorbox"
+}
+layer {
+  name: "fc7_mbox_loc"
+  type: "Convolution"
+  bottom: "fc7"
+  top: "fc7_mbox_loc"
+  convolution_param {
+    num_output: 24
+    pad: 1
+    kernel_size: 3
+    stride: 1
+  }
+}
+layer {
+  name: "fc7_mbox_loc_perm"
+  type: "IPlugin"
+  bottom: "fc7_mbox_loc"
+  top: "fc7_mbox_loc_perm"
+}
+layer {
+  name: "fc7_mbox_loc_flat"
+  type: "IPlugin"
+  bottom: "fc7_mbox_loc_perm"
+  top: "fc7_mbox_loc_flat"
+}
+layer {
+  name: "fc7_mbox_conf"
+  type: "Convolution"
+  bottom: "fc7"
+  top: "fc7_mbox_conf"
+  convolution_param {
+    num_output: 126
+    pad: 1
+    kernel_size: 3
+    stride: 1
+  }
+}
+layer {
+  name: "fc7_mbox_conf_perm"
+  type: "IPlugin"
+  bottom: "fc7_mbox_conf"
+  top: "fc7_mbox_conf_perm"
+}
+layer {
+  name: "fc7_mbox_conf_flat"
+  type: "IPlugin"
+  bottom: "fc7_mbox_conf_perm"
+  top: "fc7_mbox_conf_flat"
+}
+layer {
+  name: "fc7_mbox_priorbox"
+  type: "IPlugin"
+  bottom: "fc7"
+  bottom: "data"
+  top: "fc7_mbox_priorbox"
+}
+layer {
+  name: "conv6_2_mbox_loc"
+  type: "Convolution"
+  bottom: "conv6_2"
+  top: "conv6_2_mbox_loc"
+  convolution_param {
+    num_output: 24
+    pad: 1
+    kernel_size: 3
+    stride: 1
+  }
+}
+layer {
+  name: "conv6_2_mbox_loc_perm"
+  type: "IPlugin"
+  bottom: "conv6_2_mbox_loc"
+  top: "conv6_2_mbox_loc_perm"
+}
+layer {
+  name: "conv6_2_mbox_loc_flat"
+  type: "IPlugin"
+  bottom: "conv6_2_mbox_loc_perm"
+  top: "conv6_2_mbox_loc_flat"
+}
+layer {
+  name: "conv6_2_mbox_conf"
+  type: "Convolution"
+  bottom: "conv6_2"
+  top: "conv6_2_mbox_conf"
+  convolution_param {
+    num_output: 126
+    pad: 1
+    kernel_size: 3
+    stride: 1
+  }
+}
+layer {
+  name: "conv6_2_mbox_conf_perm"
+  type: "IPlugin"
+  bottom: "conv6_2_mbox_conf"
+  top: "conv6_2_mbox_conf_perm"
+}
+layer {
+  name: "conv6_2_mbox_conf_flat"
+  type: "IPlugin"
+  bottom: "conv6_2_mbox_conf_perm"
+  top: "conv6_2_mbox_conf_flat"
+}
+layer {
+  name: "conv6_2_mbox_priorbox"
+  type: "IPlugin"
+  bottom: "conv6_2"
+  bottom: "data"
+  top: "conv6_2_mbox_priorbox"
+}
+layer {
+  name: "conv7_2_mbox_loc"
+  type: "Convolution"
+  bottom: "conv7_2"
+  top: "conv7_2_mbox_loc"
+  convolution_param {
+    num_output: 24
+    pad: 1
+    kernel_size: 3
+    stride: 1
+  }
+}
+layer {
+  name: "conv7_2_mbox_loc_perm"
+  type: "IPlugin"
+  bottom: "conv7_2_mbox_loc"
+  top: "conv7_2_mbox_loc_perm"
+}
+layer {
+  name: "conv7_2_mbox_loc_flat"
+  type: "IPlugin"
+  bottom: "conv7_2_mbox_loc_perm"
+  top: "conv7_2_mbox_loc_flat"
+}
+layer {
+  name: "conv7_2_mbox_conf"
+  type: "Convolution"
+  bottom: "conv7_2"
+  top: "conv7_2_mbox_conf"
+  convolution_param {
+    num_output: 126
+    pad: 1
+    kernel_size: 3
+    stride: 1
+  }
+}
+layer {
+  name: "conv7_2_mbox_conf_perm"
+  type: "IPlugin"
+  bottom: "conv7_2_mbox_conf"
+  top: "conv7_2_mbox_conf_perm"
+}
+layer {
+  name: "conv7_2_mbox_conf_flat"
+  type: "IPlugin"
+  bottom: "conv7_2_mbox_conf_perm"
+  top: "conv7_2_mbox_conf_flat"
+}
+layer {
+  name: "conv7_2_mbox_priorbox"
+  type: "IPlugin"
+  bottom: "conv7_2"
+  bottom: "data"
+  top: "conv7_2_mbox_priorbox"
+}
+layer {
+  name: "conv8_2_mbox_loc"
+  type: "Convolution"
+  bottom: "conv8_2"
+  top: "conv8_2_mbox_loc"
+  convolution_param {
+    num_output: 16
+    pad: 1
+    kernel_size: 3
+    stride: 1
+  }
+}
+layer {
+  name: "conv8_2_mbox_loc_perm"
+  type: "IPlugin"
+  bottom: "conv8_2_mbox_loc"
+  top: "conv8_2_mbox_loc_perm"
+}
+layer {
+  name: "conv8_2_mbox_loc_flat"
+  type: "IPlugin"
+  bottom: "conv8_2_mbox_loc_perm"
+  top: "conv8_2_mbox_loc_flat"
+}
+layer {
+  name: "conv8_2_mbox_conf"
+  type: "Convolution"
+  bottom: "conv8_2"
+  top: "conv8_2_mbox_conf"
+  convolution_param {
+    num_output: 84
+    pad: 1
+    kernel_size: 3
+    stride: 1
+  }
+}
+layer {
+  name: "conv8_2_mbox_conf_perm"
+  type: "IPlugin"
+  bottom: "conv8_2_mbox_conf"
+  top: "conv8_2_mbox_conf_perm"
+}
+layer {
+  name: "conv8_2_mbox_conf_flat"
+  type: "IPlugin"
+  bottom: "conv8_2_mbox_conf_perm"
+  top: "conv8_2_mbox_conf_flat"
+}
+layer {
+  name: "conv8_2_mbox_priorbox"
+  type: "IPlugin"
+  bottom: "conv8_2"
+  bottom: "data"
+  top: "conv8_2_mbox_priorbox"
+}
+layer {
+  name: "conv9_2_mbox_loc"
+  type: "Convolution"
+  bottom: "conv9_2"
+  top: "conv9_2_mbox_loc"
+  convolution_param {
+    num_output: 16
+    pad: 1
+    kernel_size: 3
+    stride: 1
+  }
+}
+layer {
+  name: "conv9_2_mbox_loc_perm"
+  type: "IPlugin"
+  bottom: "conv9_2_mbox_loc"
+  top: "conv9_2_mbox_loc_perm"
+}
+layer {
+  name: "conv9_2_mbox_loc_flat"
+  type: "IPlugin"
+  bottom: "conv9_2_mbox_loc_perm"
+  top: "conv9_2_mbox_loc_flat"
+}
+layer {
+  name: "conv9_2_mbox_conf"
+  type: "Convolution"
+  bottom: "conv9_2"
+  top: "conv9_2_mbox_conf"
+  convolution_param {
+    num_output: 84
+    pad: 1
+    kernel_size: 3
+    stride: 1
+  }
+}
+layer {
+  name: "conv9_2_mbox_conf_perm"
+  type: "IPlugin"
+  bottom: "conv9_2_mbox_conf"
+  top: "conv9_2_mbox_conf_perm"
+}
+layer {
+  name: "conv9_2_mbox_conf_flat"
+  type: "IPlugin"
+  bottom: "conv9_2_mbox_conf_perm"
+  top: "conv9_2_mbox_conf_flat"
+}
+layer {
+  name: "conv9_2_mbox_priorbox"
+  type: "IPlugin"
+  bottom: "conv9_2"
+  bottom: "data"
+  top: "conv9_2_mbox_priorbox"
+}
+layer {
+  name: "mbox_loc"
+  type: "IPlugin"
+  bottom: "conv4_3_norm_mbox_loc_flat"
+  bottom: "fc7_mbox_loc_flat"
+  bottom: "conv6_2_mbox_loc_flat"
+  bottom: "conv7_2_mbox_loc_flat"
+  bottom: "conv8_2_mbox_loc_flat"
+  bottom: "conv9_2_mbox_loc_flat"
+  top: "mbox_loc"
+}
+layer {
+  name: "mbox_conf"
+  type: "IPlugin"
+  bottom: "conv4_3_norm_mbox_conf_flat"
+  bottom: "fc7_mbox_conf_flat"
+  bottom: "conv6_2_mbox_conf_flat"
+  bottom: "conv7_2_mbox_conf_flat"
+  bottom: "conv8_2_mbox_conf_flat"
+  bottom: "conv9_2_mbox_conf_flat"
+  top: "mbox_conf"
+}
+layer {
+  name: "mbox_priorbox"
+  type: "IPlugin"
+  bottom: "conv4_3_norm_mbox_priorbox"
+  bottom: "fc7_mbox_priorbox"
+  bottom: "conv6_2_mbox_priorbox"
+  bottom: "conv7_2_mbox_priorbox"
+  bottom: "conv8_2_mbox_priorbox"
+  bottom: "conv9_2_mbox_priorbox"
+  top: "mbox_priorbox"
+}
+layer {
+  name: "mbox_conf_reshape"
+  type: "IPlugin"
+  bottom: "mbox_conf"
+  top: "mbox_conf_reshape"
+}
+layer {
+  name: "mbox_conf_softmax"
+  type: "IPlugin"
+  bottom: "mbox_conf_reshape"
+  top: "mbox_conf_softmax"
+}
+layer {
+  name: "mbox_conf_flatten"
+  type: "IPlugin"
+  bottom: "mbox_conf_softmax"
+  top: "mbox_conf_flatten"
+}
+#layer {
+#  name: "detection_out"
+#  type: "IPlugin"
+#  bottom: "mbox_loc"
+#  bottom: "mbox_conf_flatten"
+#  bottom: "mbox_priorbox"
+#  top: "detection_out"
+#}
