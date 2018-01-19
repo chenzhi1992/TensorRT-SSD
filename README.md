@@ -1,6 +1,10 @@
 # TensorRT-SSD
 Use TensorRT API to implement Caffe-SSD， SSD（channel pruning）， Mobilenet-SSD
 
+============================================================================
+I hope my code will help you learn and understand the TensorRT API better. It’s welcome to discuss the deep learning algorithm, model optimization， TensorRT API and so on， and learn from each other.
+==============================================================================
+
 #Introduction:
 
 1. The original Caffe-SSD can run 3-5fps on my jetson tx2.
@@ -12,6 +16,7 @@ Use TensorRT API to implement Caffe-SSD， SSD（channel pruning）， Mobilenet
 
 1. TensorRT3.0
 2. Cuda8.0 or Cuda9.0
+3. OpenCV
 
 
 The code will be published shortly...
