@@ -20,3 +20,11 @@ I hope my code will help you learn and understand the TensorRT API better. It’
 
 
 The code will be published shortly...
+
+==============================================
+
+In the Other_layer_tensorRT folder, there are the implementation of some other layers with TensorRT api， including：
+
+1. PReLU
+
+Continuously updated...
