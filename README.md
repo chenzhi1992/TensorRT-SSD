@@ -28,3 +28,5 @@ In the Other_layer_tensorRT folder, there are the implementation of some other l
 1. PReLU
 
 Continuously updated...
+
+1. 2018/02/06, update detection_out layer
