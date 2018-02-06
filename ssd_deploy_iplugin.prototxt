@@ -848,11 +848,12 @@ layer {
   bottom: "mbox_conf_softmax"
   top: "mbox_conf_flatten"
 }
-#layer {
-#  name: "detection_out"
-#  type: "IPlugin"
-#  bottom: "mbox_loc"
-#  bottom: "mbox_conf_flatten"
-#  bottom: "mbox_priorbox"
-#  top: "detection_out"
-#}
+layer {
+  name: "detection_out"
+  type: "IPlugin"
+  bottom: "mbox_loc"
+  bottom: "mbox_conf_flatten"
+  bottom: "mbox_priorbox"
+  top: "detection_out"
+  top: "detection_out2"
+}
