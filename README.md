@@ -9,7 +9,7 @@ I hope my code will help you learn and understand the TensorRT API better. It’
 
 1. The original Caffe-SSD can run 3-5fps on my jetson tx2.
 2. TensorRT-SSD can run 8-10fps on my jetson tx2.
-3. TensorRT-SSD(channel pruning) can run 15-16fps on my jetson tx2.
+3. TensorRT-SSD(channel pruning) can run 16-17fps on my jetson tx2.
 4. TensorRT-Mobilenet-SSD can run 40-43fps on my jetson tx2（it‘s cool！）， and run 100+fps on gtx1060.
 
 #Requirements:
