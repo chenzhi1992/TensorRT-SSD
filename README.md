@@ -30,3 +30,4 @@ In the Other_layer_tensorRT folder, there are the implementation of some other l
 Continuously updated...
 
 1. 2018/02/06, update detection_out layer
+2. 2018/03/07， add the common.cpp file
