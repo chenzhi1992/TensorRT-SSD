@@ -33,6 +33,5 @@ Continuously updated...
 2. 2018/03/07， add the common.cpp file
 3. 2018/04/21， TensorFlow 1.7 wheel with JetPack 3.2.（enable TensorRT support)
 
-  Python2.7：https://nvidia.app.box.com/v/TF170-py27-wTRT
-
-  Python3.5：https://nvidia.app.box.com/v/TF170-py35-wTRT
+   Python2.7：https://nvidia.app.box.com/v/TF170-py27-wTRT
+   Python3.5：https://nvidia.app.box.com/v/TF170-py35-wTRT
