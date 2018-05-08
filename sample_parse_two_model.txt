@@ -2,5 +2,80 @@
 // Related websites： https://devtalk.nvidia.com/default/topic/1028003/jetson-tx2/why-tensorrt-can-t-parse-two-model-simultaneously-/
 
 // the sample code：
-void caffeToGIEModel（）
-{}
+void caffeToGIEModel(const std::string& deployFile,			// name for caffe prototxt
+                     const std::string& modelFile,			// name for model
+                     const std::string& deployFile2,			// name for caffe prototxt
+                     const std::string& modelFile2,			// name for model
+                     const std::vector<std::string>& outputs,		// network outputs
+                     unsigned int maxBatchSize,				// batch size - NB must be at least as large as the batch we want to run with)
+                     nvcaffeparser1::IPluginFactory* pluginFactory,	// factory for plugin layers
+                     IHostMemory **gieModelStream,
+                     nvcaffeparser1::IPluginFactory* pluginFactory2,	// factory for plugin layers
+                     IHostMemory **gieModelStream2)			// output stream for the GIE model
+{
+    // create the builder
+    IBuilder* builder = createInferBuilder(gLogger);
+    IBuilder* builder2 = createInferBuilder(gLogger);
+
+    INetworkDefinition* network = builder->createNetwork();
+    INetworkDefinition* network2 = builder->createNetwork();
+    ICaffeParser* parser = createCaffeParser();
+    ICaffeParser* parser2 = createCaffeParser();
+
+    parser->setPluginFactory(pluginFactory);
+    parser2->setPluginFactory(pluginFactory2);
+
+    std::cout << "Begin parsing model1..." << std::endl;
+    const IBlobNameToTensor* blobNameToTensor = parser->parse(deployFile.c_str(),
+                                                              modelFile.c_str(),
+                                                              *network,
+                                                              DataType::kFLOAT);
+    std::cout << "End parsing model1..." << std::endl;
+    // specify which tensors are outputs
+    for (auto& s : outputs)
+        network->markOutput(*blobNameToTensor->find(s.c_str()));
+
+    // Build the engine
+    builder->setMaxBatchSize(maxBatchSize);
+    builder->setMaxWorkspaceSize(16 << 20);	
+
+    std::cout << "Begin building engine1..." << std::endl;
+    ICudaEngine* engine = builder->buildCudaEngine(*network);
+    assert(engine);
+    std::cout << "End building engine1..." << std::endl;
+
+    network->destroy();
+    parser->destroy();
+   (*gieModelStream) = engine->serialize();
+
+        std::cout << "Begin parsing model2..." << std::endl;
+    const IBlobNameToTensor* blobNameToTensor2 = parser2->parse(deployFile.c_str(),
+                                                              modelFile.c_str(),
+                                                              *network2,
+                                                              DataType::kHALF);
+    builder2->setHalf2Mode(true);
+    std::cout << "End parsing model2..." << std::endl;
+    // specify which tensors are outputs
+    for (auto& s : outputs)
+        network2->markOutput(*blobNameToTensor2->find(s.c_str()));
+
+    // Build the engine
+    builder2->setMaxBatchSize(maxBatchSize);
+    builder2->setMaxWorkspaceSize(16 << 20);	
+
+    std::cout << "Begin building engine2..." << std::endl;
+    ICudaEngine* engine2 = builder2->buildCudaEngine(*network2);
+    assert(engine2);
+    std::cout << "End building engine2..." << std::endl;
+
+    network2->destroy();
+    parser2->destroy();
+    (*gieModelStream2) = engine2->serialize();
+    
+
+    engine->destroy();
+    engine2->destroy();
+    builder->destroy();
+    builder2->destroy();
+    shutdownProtobufLibrary();
+}
