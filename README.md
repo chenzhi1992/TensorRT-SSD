@@ -38,3 +38,5 @@ Continuously updated...
    Python3.5：https://nvidia.app.box.com/v/TF170-py35-wTRT
    
 4. 2018/05/07， TensorRT parse two（many） models， see sample_parse_two_models.txt
+
+5. 2018/05/30, add MobileNet-SSD_iplugin.prototxt （21 classes）
