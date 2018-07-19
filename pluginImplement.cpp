@@ -290,22 +290,25 @@ nvinfer1::IPlugin* PluginFactory::createPlugin(const char* layerName, const nvin
     else if (!strcmp(layerName, "mbox_loc"))
     {
         assert(mBox_loc_layer.get() == nullptr);
-        mBox_loc_layer = std::unique_ptr<INvPlugin, decltype(nvPluginDeleter)>
-                (createConcatPlugin(1, true), nvPluginDeleter);
+        //mBox_loc_layer = std::unique_ptr<INvPlugin, decltype(nvPluginDeleter)>
+        //        (createConcatPlugin(1, true), nvPluginDeleter);
+        mBox_loc_layer = std::unique_ptr<ConcatPlugin>(new ConcatPlugin(1));
         return mBox_loc_layer.get();
     }
     else if (!strcmp(layerName, "mbox_conf"))
     {
         assert(mBox_conf_layer.get() == nullptr);
-        mBox_conf_layer = std::unique_ptr<INvPlugin, decltype(nvPluginDeleter)>
-                (createConcatPlugin(1, true), nvPluginDeleter);
+        //mBox_conf_layer = std::unique_ptr<INvPlugin, decltype(nvPluginDeleter)>
+        //        (createConcatPlugin(1, true), nvPluginDeleter);
+        mBox_conf_layer = std::unique_ptr<ConcatPlugin>(new ConcatPlugin(1));
         return mBox_conf_layer.get();
     }
     else if (!strcmp(layerName, "mbox_priorbox"))
     {
         assert(mBox_priorbox_layer.get() == nullptr);
-        mBox_priorbox_layer = std::unique_ptr<INvPlugin, decltype(nvPluginDeleter)>
-                (createConcatPlugin(2, true), nvPluginDeleter);
+        //mBox_priorbox_layer = std::unique_ptr<INvPlugin, decltype(nvPluginDeleter)>
+        //        (createConcatPlugin(2, true), nvPluginDeleter);
+        mBox_priorbox_layer = std::unique_ptr<ConcatPlugin>(new ConcatPlugin(2));
         return mBox_priorbox_layer.get();
     }
         //flatten
@@ -542,19 +545,22 @@ IPlugin* PluginFactory::createPlugin(const char* layerName, const void* serialDa
     else if (!strcmp(layerName, "mbox_loc"))
     {
         assert(mBox_loc_layer.get() == nullptr);
-        mBox_loc_layer = std::unique_ptr<INvPlugin, decltype(nvPluginDeleter)>(createConcatPlugin(serialData, serialLength), nvPluginDeleter);
+        //mBox_loc_layer = std::unique_ptr<INvPlugin, decltype(nvPluginDeleter)>(createConcatPlugin(serialData, serialLength), nvPluginDeleter);
+        mBox_loc_layer = std::unique_ptr<ConcatPlugin>(new ConcatPlugin(1, serialData, serialLength));
         return mBox_loc_layer.get();
     }
     else if (!strcmp(layerName, "mbox_conf"))
     {
         assert(mBox_conf_layer.get() == nullptr);
-        mBox_conf_layer = std::unique_ptr<INvPlugin, decltype(nvPluginDeleter)>(createConcatPlugin(serialData, serialLength), nvPluginDeleter);
+        //mBox_conf_layer = std::unique_ptr<INvPlugin, decltype(nvPluginDeleter)>(createConcatPlugin(serialData, serialLength), nvPluginDeleter);
+        mBox_conf_layer = std::unique_ptr<ConcatPlugin>(new ConcatPlugin(1, serialData, serialLength));
         return mBox_conf_layer.get();
     }
     else if (!strcmp(layerName, "mbox_priorbox"))
     {
         assert(mBox_priorbox_layer.get() == nullptr);
-        mBox_priorbox_layer = std::unique_ptr<INvPlugin, decltype(nvPluginDeleter)>(createConcatPlugin(serialData, serialLength), nvPluginDeleter);
+        //mBox_priorbox_layer = std::unique_ptr<INvPlugin, decltype(nvPluginDeleter)>(createConcatPlugin(serialData, serialLength), nvPluginDeleter);
+        mBox_priorbox_layer = std::unique_ptr<ConcatPlugin>(new ConcatPlugin(2, serialData, serialLength));
         return mBox_priorbox_layer.get();
     }
         //flatten
