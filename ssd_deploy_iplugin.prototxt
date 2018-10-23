@@ -465,7 +465,6 @@ layer {
   type: "IPlugin"
   bottom: "conv4_3"
   top: "conv4_3_norm"
-  }
 }
 layer {
   name: "conv4_3_norm_mbox_loc"
